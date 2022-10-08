@@ -9,16 +9,6 @@ export const links = {
         {
             name: "PRODUCT",
             url: "/product",
-            subLinks: [
-                {
-                    name: "Clothing",
-                    url: "/clothing",
-                },
-                {
-                    name: "Electronics",
-                    url: "/electronics",
-                },
-            ],
         },
         {
             name: "CONTACT",

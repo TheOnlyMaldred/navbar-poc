@@ -10,7 +10,7 @@ import logoDefault from '../assets/ReactIcon.png'
 
 export default function Navbar({ links, logo }) {
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false, undefined);
 
     return (
         <div id='navbar'>
@@ -20,17 +20,20 @@ export default function Navbar({ links, logo }) {
             <ul>
 
                 {links.items.map((name, key) => (
-
                     <li key={key}>
 
-                        <a className='link' href={name.url} 
-                            onMouseEnter={() => setShow(true)} 
-                            onMouseLeave={() => setShow(false)} >
+                        <a className='link' href={name.url}
+                            onMouseEnter={() => {
+                                setShow(true, key);
+                            }}
+                            onMouseLeave={() => {
+                                setShow(false, key);
+                            }} >
                             {name.name}
                         </a>
 
                         {name.subLinks !== undefined
-                            ? <Dropdown subLinks={name.subLinks} isVisible={show} />
+                            ? <Dropdown subLinks={name.subLinks} isVisible={show} id={key} />
                             : undefined
                         }
 

@@ -1,15 +1,15 @@
 import React from 'react'
 import './Dropdown.scss'
 
-export default function Dropdown({ subLinks, isVisible }) {
+export default function Dropdown({ subLinks, isVisible, id }) {
 
     let active = isVisible;
 
     isVisible ? active = " active" : active = "";
 
     return (
-        <div className={`sub-links${active}`}>
 
+        <div className={`sub-links${active}`}>
 
             {subLinks.map((subLink, key) =>
 
