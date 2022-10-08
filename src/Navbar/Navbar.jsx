@@ -1,25 +1,48 @@
-import './Navbar.scss'
-import { navbarItems } from './Items/Items'
-import logo from '../assets/React-icon.svg.webp'
-import search from '../assets/search-icon2.webp'
+import React, { useState } from 'react'
 
-export default function Navbar({ navbarSelected, setNavbarSelected }) {
+import './Navbar.scss'
+
+import Dropdown from './Dropdown/Dropdown'
+
+import searchIcon from '../assets/SearchIcon.webp'
+import logoDefault from '../assets/ReactIcon.png'
+
+
+export default function Navbar({ links, logo }) {
+
+    const [show, setShow] = useState(false);
 
     return (
         <div id='navbar'>
 
-            <ul className='content'>
+            <img src={logo !== undefined ? logo : logoDefault} className="logo" alt="My Logo" />
 
-                <img src={logo} alt="" />
+            <ul>
 
-                {navbarItems.items.map((item, key) =>
-                    <li key={key}><a href={item.link}>{item.title}</a></li>
+                {links.items.map((name, key) => (
+
+                    <li key={key}>
+
+                        <a className='link' href={name.url} 
+                            onMouseEnter={() => setShow(true)} 
+                            onMouseLeave={() => setShow(false)} >
+                            {name.name}
+                        </a>
+
+                        {name.subLinks !== undefined
+                            ? <Dropdown subLinks={name.subLinks} isVisible={show} />
+                            : undefined
+                        }
+
+                    </li>
+                )
                 )}
 
             </ul>
 
-            <img className='search-icon' src={search} alt="" />
-            
+            <div className='search-icon' >
+                <img src={searchIcon} alt="Search Bar" />
+            </div>
         </div>
     )
 }
