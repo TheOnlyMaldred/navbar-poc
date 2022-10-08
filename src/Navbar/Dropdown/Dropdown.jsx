@@ -1,7 +1,7 @@
 import React from 'react'
 import './Dropdown.scss'
 
-export default function Dropdown({ subLinks, isVisible, id }) {
+export default function Dropdown({ subLinks, isVisible }) {
 
     let active = isVisible;
 
